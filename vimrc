@@ -6,9 +6,9 @@
 set nocompatible
 filetype off     " required!
 
-let g:vundle_default_git_proto='git'
+let g:vundle_default_git_proto='https'
 set rtp+=~/.vim/bundle/vundle/
-set rtp+=~/.vim/bundle/go/
+set rtp+=~/vim-golang/
 call vundle#rc()
 
 " let Vundle manage Vundle. required! 
@@ -21,13 +21,12 @@ Bundle 'gmarik/vundle'
 " Navigation
 Bundle 'FuzzyFinder'
 Bundle 'a.vim'
-Bundle 'wincent/Command-T'
+Bundle 'kien/ctrlp.vim'
 Bundle 'taglist.vim'
 Bundle 'cscope_macros.vim'
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'fholgado/minibufexpl.vim'
 " UI Additions
-Bundle 'dickeytk/status.vim'
+Bundle 'dickeyxxx/status.vim'
 " Commands
 Bundle 'tpope/vim-surround'
 Bundle 'mileszs/ack.vim'
@@ -52,7 +51,7 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'tangledhelix/vim-octopress'
 Bundle 'tpope/vim-rails'
 Bundle 'kchmck/vim-coffee-script'
-Bundle 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
+"Bundle 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
 " Libraries
 Bundle 'tpope/vim-repeat'
 Bundle 'L9'
@@ -68,7 +67,7 @@ filetype plugin indent on
 if has('win32') || has('win64')
   " Windows
   source $VIMRUNTIME/mswin.vim
-  set guifont=Consolas:h10:cANSI
+  set guifont=Consolas:h11:cANSI
   set guioptions-=T " Toolbar
   set guioptions-=m " Menubar
 
@@ -80,7 +79,7 @@ if has('win32') || has('win64')
   cd ~
 elseif has('gui_running')
   if has("gui_macvim")
-    set guifont=Monaco:h12
+    set guifont=Monaco:h14
     " e: tab page, g: gray menu, m: menu bar, t: tearoff menu items
     set guioptions=egmt
     " commands like yy will directly put content into mac clipboard
@@ -119,11 +118,11 @@ set ruler " show the cursor position all the time
 set nu
 set wrap " wrap long text when displaying
 set laststatus=2
+
 "set cmdheight=2
 "set list
 " :dig for more symbols
 "set listchars=tab:»·,trail:·
-
 " ---------------
 " Behaviors
 " ---------------
@@ -312,6 +311,13 @@ endif
 " ----------------------------------------
 
 " ---------------
+" ctrl.p
+" ---------------
+
+nnoremap <silent> <Leader>f :CtrlPCurWD<CR>
+nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
+
+" ---------------
 " SuperTab
 " ---------------
 " Set these up for cross-buffer completion (something Neocachecompl has a hard
@@ -424,7 +430,7 @@ nmap <Leader>bc :BundleClean<CR>
 " ---------------
 " Kwbd
 " ---------------
-nnoremap <Leader>bd :Kwbd<CR>
+nnoremap <Leader>d :Kwbd<CR>
 
 " ---------------
 " Syntastic
