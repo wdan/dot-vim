@@ -8,7 +8,7 @@ filetype off     " required!
 
 let g:vundle_default_git_proto='https'
 set rtp+=~/.vim/bundle/vundle/
-set rtp+=~/vim-golang/
+set rtp+=~/.vim/vim-golang/
 call vundle#rc()
 
 " let Vundle manage Vundle. required! 
@@ -17,9 +17,10 @@ Bundle 'gmarik/vundle'
 " ---------------
 " Plugin Bundles
 " ---------------
-
+" Search
+Bundle 'rking/ag.vim'
 " Navigation
-Bundle 'FuzzyFinder'
+Bundle 'FuzzyFinder' 
 Bundle 'a.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'taglist.vim'
@@ -29,7 +30,6 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'dickeyxxx/status.vim'
 " Commands
 Bundle 'tpope/vim-surround'
-Bundle 'mileszs/ack.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/nerdcommenter'
 " Automatic helpers
@@ -51,7 +51,7 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'tangledhelix/vim-octopress'
 Bundle 'tpope/vim-rails'
 Bundle 'kchmck/vim-coffee-script'
-"Bundle 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
+Bundle 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
 " Libraries
 Bundle 'tpope/vim-repeat'
 Bundle 'L9'
@@ -204,7 +204,7 @@ imap <C-l> <C-x><C-l>
 
 map <F5> :make
 map <F7> :cnext
-map  :w
+map [[ :w
 
 " Jump to the exact location of the mark
 nmap ' `
@@ -229,10 +229,10 @@ vmap Q gq
 cmap w!! w !sudo tee % >/dev/null
 
 " ctrl + k to move over the last pair
-"inoremap ( ():let leavechar=")"i
-"inoremap [ []:let leavechar="]"i
-"inoremap " "":let leavechar="\""i
-"inoremap <C-k> :exec "normal f" . leavechara
+"inoremap ( ():let leavechar=")"i
+"inoremap [ []:let leavechar="]"i
+"inoremap " "":let leavechar="\""i
+"inoremap <C-k> :exec "normal f" . leavechara
 
 " ----------------------------------------
 " Auto Commands
@@ -250,12 +250,13 @@ autocmd BufReadPost *
 
 " cpp, java specific abbreviation
 "autocmd filetype c,cpp,java set shiftwidth=8 | set ts=8 | set noexpandtab
+noremap ( ()<Esc>i)
 autocmd filetype c,cpp,java set shiftwidth=4 | set ts=4 | set expandtab
 autocmd filetype c,cpp abbreviate #i #include
 autocmd filetype c,cpp abbreviate #d #define
 autocmd filetype c,cpp abbreviate #e #endif
 "autocmd filetype c,cpp set list | set listchars=tab:»·,trail:·
-autocmd filetype c,cpp,java,go inoremap { {}<Up>o
+autocmd filetype c,cpp,java,go inoremap{ {<CR>}<Esc>ko
 autocmd filetype ruby setlocal shiftwidth=2
 autocmd filetype help setlocal nonu
 autocmd filetype html setlocal shiftwidth=2
@@ -311,6 +312,10 @@ endif
 " ----------------------------------------
 
 " ---------------
+" ag.vim 
+" ---------------
+let g:agprg="/usr/local/bin/ag --column"
+" ---------------
 " ctrl.p
 " ---------------
 
@@ -343,7 +348,7 @@ let g:manpageview_winopen="hsplit="
 " LaTeX-suite
 " -----------------
 set grepprg=grep\ -nH\ $*
-"call IMAP('EFM', '\begin{frame}    \frametitle{}\end{frame}', 'tex')
+"call IMAP('EFM', '\begin{frame}    \frametitle{}\end{frame}', 'tex')
 "au filetype tex imap <buffer> <M-TAB> <Plug>Tex_Completion
 
 " -----------------
@@ -368,6 +373,7 @@ let g:user_zen_expandabbr_key='<c-j>'
 " -----------------
 " taglist
 " -----------------
+let g:Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
 nnoremap <silent> <F4> :TlistToggle<CR>
 let g:Tlist_Show_One_File=1
 let g:Tlist_Use_Right_Window=1
@@ -426,6 +432,18 @@ nmap <Leader>bi :BundleInstall<CR>
 nmap <Leader>bi! :BundleInstall!<CR>
 nmap <Leader>bu :BundleInstall!<CR> " Because this also updates
 nmap <Leader>bc :BundleClean<CR>
+
+" Search Dash for word under cursor
+
+function! SearchDash()
+  let s:browser = "/usr/bin/open"
+  let s:wordUnderCursor = expand("<cword>")
+  let s:url = "dash://".s:wordUnderCursor
+  let s:cmd ="silent ! " . s:browser . " " . s:url
+  execute s:cmd
+  redraw!
+endfunction
+map <leader>d :call SearchDash()<CR>
 
 " ---------------
 " Kwbd
