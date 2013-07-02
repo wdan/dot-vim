@@ -40,6 +40,7 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'Raimondi/delimitMate'
 Bundle 'scrooloose/syntastic'
 Bundle 'ervandew/supertab'
+Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-session'
 Bundle 'Shougo/neocomplcache'
 " SnipMate
