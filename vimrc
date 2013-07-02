@@ -1,3 +1,7 @@
+" CPC
+au BufNewFile,BufRead *.cpc setf c
+au BufNewFile,BufRead *.cpc syn keyword cType cps
+au BufNewFile,BufRead *.cpc syn keyword cStatement cpc_spawn cpc_detached cpc_attached
 " ----------------------------------------
 " Vundle
 " ----------------------------------------
@@ -279,7 +283,7 @@ autocmd filetype go setlocal makeprg=gomake
 " ---------------
 set csprg=/usr/local/bin/cscope
 set cscopequickfix=s-,d-,i-,t-,e-
-
+nmap <C-c>c :cs find c <C-R>=expand("<cword>")<CR><CR> 
 " ---------------
 " netrw
 " ---------------
@@ -414,7 +418,7 @@ let g:statusline_order=[
 let g:fuf_modesDisable=['mrucmd'] " Enables FufMruFile
 "nnoremap <C-s> :FufBuffer<CR>
 nnoremap <silent>s<C-s> :FufFileWithCurrentBufferDir<CR>
-nnoremap <silent><C-y> :FufMruFile<CR>
+"nnoremap <silent><C-y> :FufMruFile<CR>
 nnoremap <Leader>ff :FufFile<CR>
 nnoremap <Leader>fm :FufMruFile<CR>
 
@@ -443,7 +447,7 @@ function! SearchDash()
   execute s:cmd
   redraw!
 endfunction
-map <leader>d :call SearchDash()<CR>
+map <leader>sd :call SearchDash()<CR>
 
 " ---------------
 " Kwbd
