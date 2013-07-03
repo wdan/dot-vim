@@ -43,6 +43,7 @@ Bundle 'ervandew/supertab'
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-session'
 Bundle 'Shougo/neocomplcache'
+Bundle 'rkulla/pydiction'
 " SnipMate
 Bundle "garbas/vim-snipmate"
 " SnipMate Depedancies
@@ -315,6 +316,13 @@ endif
 " ----------------------------------------
 " Plugin Configuration
 " ----------------------------------------
+
+" ---------------
+" pydiction 
+" ---------------
+filetype plugin on
+let g:pydiction_location ='~/.vim/bundle/pydiction/complete-dict'
+let g:pydiction_menu_height = 20
 
 " ---------------
 " ag.vim 
