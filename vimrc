@@ -328,6 +328,7 @@ let g:pydiction_menu_height = 20
 " ag.vim 
 " ---------------
 let g:agprg="/usr/local/bin/ag --column"
+
 " ---------------
 " ctrl.p
 " ---------------
