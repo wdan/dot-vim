@@ -1,0 +1,106 @@
+extends licenses_with_c_like_comments
+
+
+
+snippet #!
+#include <stdlib.h>
+#include <stdio.h>
+endsnippet
+
+
+
+snippet def
+#ifndef ${1/([A-Za-z0-9_]+).*/$1/}
+#define ${1:SYMBOL} ${2:value}
+#endif
+endsnippet
+
+
+
+snippet #if
+#if ${1:condition}
+${0:// TODO}
+#endif
+endsnippet
+
+
+
+snippet #ife
+#if ${1:condition}
+${2:// TODO}
+#else /* !$1 */
+${0:// TODO}
+#endif /* $1 */
+endsnippet
+
+
+
+snippet #ifdef
+#ifdef ${1:condition}
+${0:// TODO}
+#endif
+endsnippet
+
+
+
+snippet #ifdefe
+#ifdef ${1:condition}
+${2:// TODO}
+#else /* !$1 */
+${0:// TODO}
+#endif /* $1 */
+endsnippet
+
+
+
+snippet #ifndef
+#ifndef ${1:condition}
+${0:// TODO}
+#endif /* not $1 */
+endsnippet
+
+
+
+snippet #ifndefe
+#ifdef ${1:condition}
+${2:// TODO}
+#else /* $1 */
+${0:// TODO}
+#endif /* !$1 */
+endsnippet
+
+
+
+snippet enum
+enum ${1:name} {${2:A, B, C}}${3: varibale};
+endsnippet
+
+
+
+snippet macro
+#define ${1:macro}${2:(${3:variables})} ${0:macro_definition}
+endsnippet
+
+
+
+snippet struct
+struct ${1:name}_t {
+	${2:type}	${3:variable};
+	$0
+};
+endsnippet
+
+
+
+snippet tstruct
+typedef struct ${1:name}_t {
+	${3:type}	${4:variable};
+	$0
+} ${2:variable};
+endsnippet
+
+
+
+snippet typedef
+typedef ${1:int} ${2:new_name};
+endsnippet

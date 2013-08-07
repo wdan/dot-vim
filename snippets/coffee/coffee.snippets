@@ -1,0 +1,93 @@
+snippet #!
+$ ->
+  $0
+endsnippet
+
+
+snippet if
+if ${1:expression}
+  ${0:# TODO}
+endsnippet
+
+
+snippet ife
+if ${1:expression}
+  ${2: #TODO}
+else
+  ${0:# TODO}
+endsnippet
+
+
+
+snippet ifee
+if ${1:expression}
+  ${2: #TODO}
+else if ${3:expression}
+  ${4: #TODO}
+else
+  ${0:# TODO}
+endsnippet
+
+
+
+snippet unless
+unless ${1:expression}
+  ${0:# TODO}
+endsnippet
+
+
+snippet unlesse
+unless ${1:expression}
+  ${2: #TODO}
+else
+  ${0:# TODO}
+endsnippet
+
+
+
+snippet switch
+switch ${1:expression}
+  when ${2:something} then ${3:code}
+  else ${0:other code}
+endsnippet
+
+
+snippet each
+for ${1:item} in ${2:array}
+  ${0:# TODO}
+endsnippet
+
+
+snippet "\bf(unction)?" "name = (..) ->" r
+${1:func_name} = ${2:(${3:arguments}) }->
+  ${0:# TODO}
+endsnippet
+
+
+snippet "\bF(unction)?" "(..) ->" r
+${1:(${2:arguments}) }->
+  ${0:# TODO}
+endsnippet
+
+
+snippet "\b(log|debug|warn|error|info)" "console.(log|debug|warn|error|info)" r
+console.`!p snip.rv=match.group(1)` ${1:"${2}"}
+endsnippet
+
+
+snippet alert
+alert ${1:"${2}"}
+endsnippet
+
+
+
+snippet confirm
+confirmation ${1:"${2}"}
+endsnippet
+
+
+snippet prompt
+prompt ${1:"${2:text}"}, ${3:"${4:default value}"}
+endsnippet
+
+# vim: set ts=2 sw=2 expandtab:

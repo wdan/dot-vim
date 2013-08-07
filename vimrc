@@ -21,17 +21,23 @@ Bundle 'gmarik/vundle'
 " ---------------
 " Plugin Bundles
 " ---------------
+" Theme
+Bundle 'altercation/vim-colors-solarized'
 " Search
 Bundle 'rking/ag.vim'
 " Navigation
+Bundle 'scrooloose/nerdtree'
 Bundle 'FuzzyFinder' 
 Bundle 'a.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'taglist.vim'
+" Bundle 'humiaozuzu/TabBar'
 Bundle 'cscope_macros.vim'
 Bundle 'Lokaltog/vim-easymotion'
 " UI Additions
+Bundle 'Yggdroot/indentLine'
 Bundle 'dickeyxxx/status.vim'
+Bundle 'Lokaltog/vim-powerline'
 " Commands
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
@@ -44,12 +50,14 @@ Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-session'
 Bundle 'Shougo/neocomplcache'
 Bundle 'rkulla/pydiction'
+Bundle 'avsm/ocaml-annot'
 " SnipMate
-Bundle "garbas/vim-snipmate"
+Bundle "SirVer/ultisnips"
+"Bundle "garbas/vim-snipmate"
 " SnipMate Depedancies
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle "snipmate-snippets"
+"Bundle "MarcWeber/vim-addon-mw-utils"
+"Bundle "tomtom/tlib_vim"
+"Bundle "snipmate-snippets"
 " Language Additions
 Bundle 'mattn/zencoding-vim'
 Bundle 'tpope/vim-rvm'
@@ -59,6 +67,8 @@ Bundle 'tpope/vim-rails'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
 " Libraries
+Bundle 'rizzatti/funcoo.vim'
+Bundle 'rizzatti/dash.vim'
 Bundle 'tpope/vim-repeat'
 Bundle 'L9'
 Bundle 'genutils'
@@ -102,8 +112,7 @@ endif
 " Color
 " ---------------
 set t_Co=256 " XXX This has problem on real terminal, fix it
-colorscheme inkpot
-
+"colorscheme inkpot
 " ---------------
 " File encodings
 " ---------------
@@ -141,12 +150,13 @@ set history=100
 set showcmd " display incomplete commands
 set autowrite " Writes on make/shell commands
 set wildignore+=*.o,*.obj,.git
-set scrolloff=5 " Always keep 5 lines above/below the cursor
+set scrolloff=7 " Always keep 5 lines above/below the cursor
 set timeoutlen=200 " Time to wait for a command (after Leader for example)
 
 " ---------------
 " Text Format
 " ---------------
+set autoread
 set backspace=indent,eol,start " allow backspacing over everything in insert mode
 set shiftwidth=4  " Tabs under smart indent
 set cindent
@@ -167,6 +177,8 @@ set hlsearch
 " ---------------
 " Visual
 " ---------------
+set wildmenu
+set cursorline
 set showmatch  " Show matching brackets.
 set matchtime=2 " How many tenths of a second to blink
 
@@ -265,7 +277,7 @@ autocmd filetype c,cpp abbreviate #e #endif
 autocmd filetype c,cpp,java,go inoremap{ {<CR>}<Esc>ko
 autocmd filetype ruby setlocal shiftwidth=2
 autocmd filetype help setlocal nonu
-autocmd filetype html setlocal shiftwidth=2
+autocmd filetype html setlocal shiftwidth=4
 autocmd filetype python setlocal expandtab | setlocal shiftwidth=4 | setlocal tabstop=4 | setlocal softtabstop=4
 autocmd filetype tex setlocal ts=4 | setlocal sw=4 | setlocal softtabstop=4 | setlocal expandtab
 autocmd filetype lua setlocal ts=2 | setlocal sw=2 | setlocal softtabstop=2 | setlocal expandtab
@@ -273,6 +285,7 @@ autocmd filetype sh setlocal ts=4 | setlocal sw=4 | setlocal softtabstop=4 | set
 autocmd filetype srt setlocal ts=4 | setlocal sw=4 | setlocal softtabstop=4 | setlocal expandtab
 autocmd filetype vim setlocal ts=2 | setlocal sw=2 | setlocal expandtab
 autocmd filetype markdown setlocal ts=2 | setlocal sw=2 | setlocal expandtab
+autocmd filetype ocaml setlocal shiftwidth=2| setlocal ts=2| setlocal sw=2 | setlocal expandtab
 autocmd filetype go setlocal ts=4 | setlocal sw=4 | setlocal noexpandtab
 autocmd filetype go setlocal makeprg=gomake
 
@@ -317,9 +330,38 @@ endif
 " Plugin Configuration
 " ----------------------------------------
 
+
+" ---------------
+" ocaml-annot 
+" ---------------
+function! OCamlType()
+  let col  = col('.')
+  let line = line('.')
+  let file = expand("%:p:r")
+  echo system("annot -n -type ".line." ".col." ".file.".annot")
+endfunction    
+map .t :call OCamlType()<return>
+
+" ---------------
+" dash 
+" ---------------
+:nmap <silent> <leader>a <Plug>DashSearch
+let g:dash_map = {
+      \ 'ruby'       : 'ruby',
+      \ 'python'     : 'python2',
+      \ 'javascript' : 'backbone',
+      \ 'go'         : 'go',
+      \ 'c'          : 'c',
+      \ 'java'       : 'java7',
+      \ 'cpp'        : 'cpp',
+      \ 'scala'        : 'scala',
+      \ 'php'        : 'php',
+      \ }
 " ---------------
 " pydiction 
 " ---------------
+filetype on
+filetype indent on
 filetype plugin on
 let g:pydiction_location ='~/.vim/bundle/pydiction/complete-dict'
 let g:pydiction_menu_height = 20
@@ -335,6 +377,11 @@ let g:agprg="/usr/local/bin/ag --column"
 
 nnoremap <silent> <Leader>f :CtrlPCurWD<CR>
 nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
+
+" ---------------
+" Tabbar 
+" ---------------
+" nmap <Leader>k :bd<CR>:bn<CR>
 
 " ---------------
 " SuperTab
@@ -369,6 +416,12 @@ set grepprg=grep\ -nH\ $*
 " NERD commenter
 " -----------------
 let NERDShutUp = 1
+
+" -----------------
+" NERD Tree 
+" -----------------
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+nmap <Leader>n :NERDTreeToggle<CR>
 
 " -----------------
 " Haskell mode
@@ -449,17 +502,17 @@ nmap <Leader>bc :BundleClean<CR>
 
 " Search Dash for word under cursor
 
-function! SearchDash()
-  let s:browser = "/usr/bin/open"
-  let s:wordUnderCursor = expand("<cword>")
-  let s:url = "dash://".s:wordUnderCursor
-  let s:cmd ="silent ! " . s:browser . " " . s:url
-  execute s:cmd
-  redraw!
-endfunction
-map <leader>sd :call SearchDash()<CR>
+"function! SearchDash()
+"  let s:browser = "/usr/bin/open"
+"  let s:wordUnderCursor = expand("<cword>")
+"  let s:url = "dash://".s:wordUnderCursor
+"  let s:cmd ="silent ! " . s:browser . " " . s:url
+"  execute s:cmd
+"  redraw!
+"endfunction
+"map <leader>sd :call SearchDash()<CR>
 
-" ---------------
+"" ---------------
 " Kwbd
 " ---------------
 nnoremap <Leader>d :Kwbd<CR>
@@ -469,11 +522,11 @@ nnoremap <Leader>d :Kwbd<CR>
 " ---------------
 
 let g:syntastic_mode_map={ 'mode': 'passive',
-                         \ 'active_filetypes': ['ruby', 'python'],
+                         \ 'active_filetypes': ['ruby', 'python', 'ocaml', 'java', 'go'],
                          \ 'passive_filetypes': ['c'] }
 
 " ---------------
-" Syntastic
+" EasyMotion 
 " ---------------
 
 let g:EasyMotion_mapping_f='f'
@@ -481,3 +534,20 @@ let g:EasyMotion_mapping_F='F'
 
 set exrc
 set secure
+
+syntax on
+let g:solarized_visibility = "high"
+let g:solarized_contrast = "high"
+set background=dark
+colorscheme solarized
+
+if has('python')
+  let g:snips_author = 'Aldis Berjoza'
+  let g:snips_author_email = 'graudeejs@yandex.com'
+  let g:UltiSnipsExpandTrigger = "<tab>"
+  let g:UltiSnipsJumpForwardTrigger = "<tab>"
+  let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+  let g:UltiSnipsSnippetDirectories = ["snippets"]
+else
+  call add(g:pathogen_disabled, 'ultisnips')
+endif

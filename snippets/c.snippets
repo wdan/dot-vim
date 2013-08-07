@@ -1,0 +1,282 @@
+extends h, licenses_with_c_like_comments
+
+
+
+snippet #!
+#include <stdlib.h>
+#include <stdio.h>
+
+void
+main(int argc, const char **argv)
+{
+	$0
+	return EXIT_SUCCESS;
+}
+endsnippet
+
+
+
+snippet If
+if ( ${1:condition} )
+	${0:// TODO};
+endsnippet
+
+
+
+snippet Unless
+if ( ! ${1:condition} )
+	${0:// TODO};
+endsnippet
+
+
+
+snippet if
+if ( ${1:condition} ) {
+	${0:// TODO}
+}
+endsnippet
+
+
+
+snippet ife
+if ( ${1:condition} ) {
+	${2:// TODO}
+}
+else {
+	${0:// TODO}
+}
+endsnippet
+
+
+
+snippet ifee
+if ( ${1:condition} ) {
+	${2:// TODO}
+}
+elsif ( ${3:condition} ) {
+	${4:// TODO}
+}
+else {
+	${0:// TODO}
+}
+endsnippet
+
+
+
+snippet unless
+if ( ! ${1:condition} ) {
+	${0:// TODO}
+}
+endsnippet
+
+
+
+snippet unlesse
+if ( ! ${1:condition} ) {
+	${2:// TODO}
+}
+else {
+	${0:// TODO}
+}
+endsnippet
+
+
+
+snippet unlessee
+if ( ! ${1:condition} ) {
+	${2:// TODO}
+}
+else if ( ${3:condition} ) {
+	${4:// TODO}
+}
+else {
+	${0:// TODO}
+}
+endsnippet
+
+
+
+snippet }eif
+}
+else if ( ${1:condition} ) {
+	${0:// TODO}
+}
+endsnippet
+
+
+
+snippet }else
+}
+else {
+	${0:// TODO}
+}
+endsnippet
+
+
+
+snippet sub
+//H_DEFINITION: $1	$2($3);
+${1:int}
+${2:function_name}(${3:void})
+{
+	$0
+}
+endsnippet
+
+
+
+snippet f
+/*! \fn $2 $3($4)
+ *  \brief ${1:description}
+ *  $4
+ */
+${2:int}
+${3:function_name}(${4:void})
+{
+	$0
+}
+endsnippet
+
+
+
+snippet for
+for (int ${1:i} = ${2:0}; $1 ${3:<} ${4:number}; $1${5:++}) {
+	${0:// TODO}
+}
+endsnippet
+
+
+
+snippet For
+for (int ${1:i} = ${2:number}; $1 ${3:>} ${4:0}; $1${5:--}) {
+	${0:// TODO}
+}
+endsnippet
+
+
+
+snippet until
+while ( ! ${1:expression} ) {
+	${0:// TODO}
+}
+endsnippet
+
+
+
+snippet Until
+do {
+	${0:// TODO}
+} while ( ! ${1:expression} );
+endsnippet
+
+
+
+snippet while
+while ( ${1:expression} ) {
+	${0:// TODO}
+}
+endsnippet
+
+
+
+snippet While
+do {
+	${0:// TODO}
+while ( ${1:expression} );
+endsnippet
+
+
+snippet return0
+return EXIT_SUCCESS;
+endsnippet
+
+
+
+snippet return1
+return EXIT_FAILURE;
+endsnippet
+
+
+
+
+snippet exit0
+exit (EXIT_SUCCESS);
+endsnippet
+
+
+
+snippet exit1
+exit (EXIT_FAILURE);
+endsnippet
+
+
+
+snippet switch
+switch (${1:variable}) {
+case ${2:value}:
+	${3:// TODO;}
+	break;${4}
+} /* switch $1 */
+endsnippet
+
+
+
+snippet case
+case ${1:value}:
+	${0:// TODO;}
+	break;
+endsnippet
+
+
+
+snippet fopen
+${1:FILE *} = fopen (${2:const char *fname}, ${3:const char *mode})${4:;}
+endsnippet
+
+
+
+snippet fopenr
+${1:FILE *} = fopen (${2:const char *fname}, "${3:r}")${4:;}
+endsnippet
+
+
+
+snippet fopenw
+${1:FILE *} = fopen (${2:const char *fname}, "${3:w")${4:;}
+endsnippet
+
+
+
+snippet fopenwr
+${1:FILE *} = fopen (${2:const char *fname}, "${3:w+}")${4:;}
+endsnippet
+
+
+
+snippet fopena
+${1:FILE *} = fopen (${2:const char *fname}, "${3:a}")${4:;}
+endsnippet
+
+
+
+snippet fopenb
+${1:FILE *} = fopen (${2:const char *fname}, "${3:b}")${4:;}
+endsnippet
+
+
+
+snippet printf
+printf ("${1:format}${2:\n}"${3:, ${4:params}});
+endsnippet
+
+
+
+snippet fprintf
+fprintf (${1:STDERR}, "${2:format}${3:\n}"${4:, ${5:params}});
+endsnippet
+
+
+
+snippet snprintf
+snprintf (${1:buffer}, ${2:sizeof($1)}, "${3:format}${4:\n}"${5:, ${6:params}});
+endsnippet

@@ -1,0 +1,113 @@
+extends licenses_with_sh_like_comments
+
+# This file defined helpers mostly for FreeBSD Ports
+
+
+snippet if
+.if ${1:condition}
+${2:	${0:# TODO}}
+.emdif
+endsnippet
+
+
+
+snippet ife
+.if ${1:condition}
+${2:	}${3:# TODO}}
+.else
+$2${0:# TODO}}
+.emdif
+endsnippet
+
+
+
+snippet for
+.for ${1:i} in ${2:list}
+${2:	${3:# TODO}}
+.endfor
+endsnippet
+
+
+
+snippet PORT "FreeBSD simple port template"
+# New ports collection makefile for:	$1
+# Date created:				`!v strftime("%b %e, %Y")`
+# Whom:					`!v g:snips_author` <$7>
+#
+# $FreeBSD$
+#
+
+PORTNAME=	${1:portname}
+PORTVERSION=	${2:portversion}
+CATEGORIES=	${3:categories}
+MASTER_SITES=	${4:http://${5:mastersite_url}}/
+DISTNAME=	${6:$1-$2}
+
+MAINTAINER=	${7:`!v g:snips_author_email`}
+COMMENT=	${8:port description}
+
+LICENSE=	${9:software license}
+
+$0
+
+.include <bsd.port.mk>
+endsnippet
+
+
+
+snippet PORT "FreeBSD port with options template"
+# New ports collection makefile for:	$1
+# Date created:				`!v strftime("%b %e, %Y")`
+# Whom:					`!v g:snips_author` <$7>
+#
+# $FreeBSD$
+#
+
+PORTNAME=	${1:portname}
+PORTVERSION=	${2:portversion}
+CATEGORIES=	${3:categories}
+MASTER_SITES=	${4:http://${5:mastersite_url}}/
+DISTNAME=	${6:$1-$2}
+
+MAINTAINER=	${7:`!v g:snips_author_email`}
+COMMENT=	${8:port description}
+
+LICENSE=	${9:software license}
+
+OPTIONS=	${10:OPTION_NAME}	"${11:Short desription}" o${12:ff} \
+		${13:OTHER OPTIONS}
+
+.include <bsd.port.pre.mk>
+
+.if ${14:!}defined(WITH_$10)
+${15:# TODO}
+.endif
+
+$0
+
+.include <bsd.port.post.mk>
+endsnippet
+
+
+
+snippet RUN!
+RUN_DEPENDS+=	${1:\$\{LOCALBASE\}/}${2:local/share/${3:PATH_TO_FILE}:${PORTSDIR}/${4:category/portdir}}
+endsnippet
+
+
+
+snippet RUN
+${1:\$\{LOCALBASE\}/}${2:local/share/${3:PATH_TO_FILE}:${PORTSDIR}/${4:category/portdir}}
+endsnippet
+
+
+
+snippet LIB!
+LIB_DEPENDS+=	${1:name}.${2:1}:${PORTSDIR}/${3:category/portdir}}
+endsnippet
+
+
+
+snippet LIB
+${1:name}.${2:1}:${PORTSDIR}/${3:category/portdir}}
+endsnippet

@@ -1,0 +1,12 @@
+snippet #!
+YUI().use('${1:node}', function(Y) {
+    $0
+});
+endsnippet
+
+
+snippet "\bY(log|debug|warn|error|info)" "Y.log(..., log|debug|warn|error|info)" r
+Y.log(${1:"${0:test}"}, '`!p snip.rv=match.group(1)`');
+endsnippet
+
+# vim: ts=4 sw=4 expandtab:

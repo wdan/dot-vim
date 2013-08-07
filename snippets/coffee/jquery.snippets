@@ -1,0 +1,55 @@
+snippet ajax "$.ajax"
+jQuery.ajax({
+  type:       '${1:GET}',
+  dataType:   '${2:html}',
+  url:        ${3:url},
+  timeout:    ${4:3000},
+  success:    (data, textStatus) ->
+    ${0:// TODO}
+  ,
+  error:      (xhr, textStatus, errorThrown) ->
+    ${5:// TODO}
+})
+endsnippet
+
+
+snippet get "$.get"
+jQuery.ajax({
+  data:       ${1:data}
+  dataType:   '${2:html}',
+  url:        ${3:url},
+  success:    (data, textStatus) ->
+    ${0:// TODO}
+});
+endsnippet
+
+
+snippet get "$.post"
+jQuery.ajax({
+  type:       'POST',
+  data:       ${1:data}
+  dataType:   '${2:html}',
+  url:        ${3:url},
+  success:    (data, textStatus) ->
+                  ${0:// TODO}
+});
+endsnippet
+
+
+snippet $ "jQuery('..')"
+jQuery('$1')
+endsnippet
+
+
+
+snippet $$ "jQuery"
+jQuery
+endsnippet
+
+
+
+snippet $this "jQuery(this)"
+jQuery(this)
+endsnippet
+
+# vim: set ts=2 sw=2 expandtab:

@@ -1,0 +1,101 @@
+snippet if
+if ${1:expression}
+	${0:" TODO}
+endif
+endsnippet
+
+
+
+snippet ife
+if ${1:expression}
+	${2:" TODO}
+else
+	${0:" TODO}
+endif
+endsnippet
+
+
+
+snippet ifee
+if ${1:expression}
+	${2:" TODO}
+elseif ${3:expression}
+	${4:" TODO}
+else
+	${0:" TODO}
+endif
+endsnippet
+
+
+
+snippet unless
+if ! ${1:expression}
+	${0:" TODO}
+endif
+endsnippet
+
+
+
+snippet unlesse
+if ! ${1:expression}
+	${2:" TODO}
+else
+	${0:" TODO}
+endif
+endsnippet
+
+
+
+snippet unlessee
+if ! ${1:expression}
+	${2:" TODO}
+elseif ${3:expression}
+	${4:" TODO}
+else
+	${0:" TODO}
+endif
+endsnippet
+
+
+
+snippet f "function"
+function ${1:Function_name}(${2})
+	${0:" TODO}
+endfunction
+endsnippet
+
+
+
+snippet for
+for ${1:i} in ${2:list}
+	${0:" TODO}
+endfor
+endsnippet
+
+
+
+snippet "\bfor_?each" "foreach" r
+for ${1:key} in ${2:dictionary}
+	${0:" dictionary[key]}
+endfor
+endsnippet
+
+
+
+snippet while
+while ${1:expression}
+	${0:" TODO}
+endwhile
+endsnippet
+
+
+
+snippet try
+try
+	${1:" TODO}
+catch /${2:something}/
+	${3:" TODO}
+${4:finally
+	${0: "TODO if everything else fails}}
+endtry
+endsnippet

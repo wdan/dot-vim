@@ -1,0 +1,28 @@
+##############################################################################
+##############################################################################
+# Rails snippets
+
+
+snippet partial
+render :partial => "${1:partial_name}"${2:, :locals => \{ ${3:locals} \}}${4:, :layout => false}
+endsnippet
+
+
+
+snippet T
+I18n.t('`!v substitute(substitute(substitute(@%, substitute(getcwd() . "/", "\/", "\\\\/", "g"), "", ""), "\\(\\.\\(html\\|js\\)\\.\\(haml\\|erb\\)\\|\\(_controller\\)\\?\\.rb\\)$", "", ""), "/", ".", "g")`.${2:${1/[^\w]/_/g}}${3}', :default => "${1:some_text}"${4})
+endsnippet
+
+
+snippet t
+I18n.t('COMMON.${2:${1/[^\w]/_/g}}${3}', :default => "${1:some_text}"${4})
+endsnippet
+
+
+snippet html
+$('#${2:page_body}').html('#{escape_javascript(render :partial => '${1:new}', :layout => false)}');
+endsnippet
+
+
+
+# vim: set ts=2 sw=2 expandtab:

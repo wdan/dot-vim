@@ -1,0 +1,80 @@
+snippet env
+\begin{${1:environment}}
+  $0
+\end{$1}
+endsnippet
+
+
+
+snippet figure
+\begin{figure}[${1:H}]
+  \centering
+  \includegraphics[${2:width}=${3:180}mm,keepaspectratio=true]{${4:image.png}}
+  \caption{${5:Image description}}
+  \label{${6:img-$4}}
+\end{figure}
+
+$0
+endsnippet
+
+
+
+snippet description
+\begin{description}
+  \item[1] --- ${1:some description}
+  $0
+\end{description}
+endsnippet
+
+
+
+snippet itemize
+\begin{itemize}
+  \item \textbf{${1:some item}} ${2:description}
+  $0
+\end{itemize}
+endsnippet
+
+
+
+snippet enumerate
+\begin{enumerate}
+  \item ${1:description}
+  $0
+\end{enumerate}
+endsnippet
+
+
+
+snippet sec
+\section{${1:title}}
+\addcontentsline{toc}{section}{${2:$1}}
+
+$0
+endsnippet
+
+
+
+snippet subsec
+\subsection{${1:title}}
+\addcontentsline{toc}{subsection}{${2:$1}}
+
+$0
+endsnippet
+
+
+
+snippet subsubsec
+\subsubsection{${1:title}}
+
+$0
+endsnippet
+
+
+
+snippet ,,
+,,$1''
+endsnippet
+
+
+# vim: set ts=2 sw=2 expandtab:

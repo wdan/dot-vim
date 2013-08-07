@@ -1,0 +1,179 @@
+extends licenses_with_c_like_comments
+
+
+
+snippet If
+if (${1:expression}) ${2:command};
+endsnippet
+
+
+
+snippet Ife
+if (${1:expression}) ${2:command}; else ${3:command};
+endsnippet
+
+
+
+snippet Unless
+of (! ${1:expression}) ${2:command};
+endsnippet
+
+
+
+snippet Unlesse
+if (! ${1:expression}) ${2:command}; else ${3:command};
+endsnippet
+
+
+
+snippet if
+if ( ${1:condition} ) {
+	${0:// TODO}
+}
+endsnippet
+
+
+
+snippet ife
+if ( ${1:condition} ) {
+	${2:// TODO}
+}
+else {
+	${0:// TODO}
+}
+endsnippet
+
+
+
+snippet ifee
+if ( ${1:condition} ) {
+	${2:// TODO}
+}
+elsif ( ${3:condition} ) {
+	${4:// TODO}
+}
+else {
+	${0:// TODO}
+}
+endsnippet
+
+
+
+snippet unless
+if ( ! ${1:condition} ) {
+	${0:// TODO}
+}
+endsnippet
+
+
+
+snippet unlesse
+if ( ! ${1:condition} ) {
+	${2:// TODO}
+}
+else {
+	${0:// TODO}
+}
+endsnippet
+
+
+
+snippet unlessee
+if ( ! ${1:condition} ) {
+	${2:// TODO}
+}
+elseif ( ${3:condition} ) {
+	${4:// TODO}
+}
+else {
+	${0:// TODO}
+}
+endsnippet
+
+
+
+snippet eif
+elseif ( ${1:condition} ) {
+	${0:// TODO}
+}
+endsnippet
+
+
+
+snippet else
+else {
+	${0:// TODO}
+}
+endsnippet
+
+
+
+snippet f
+function ${1:name}(${2}) {
+	$0
+}
+endsnippet
+
+
+
+snippet until
+while ( ! ${1:expression} ) {
+	${0:// TODO}
+}
+endsnippet
+
+
+
+snippet Until
+do {
+	${0:// TODO}
+} while ( ! ${1:expression} )
+endsnippet
+
+
+
+snippet while
+while ( ${1:expression} ) {
+	${0:// TODO}
+}
+endsnippet
+
+
+
+snippet While
+do {
+	${0:// TODO}
+while ( ${1:expression} );
+endsnippet
+
+
+
+snippet for
+for ($${1:i} = ${2:0}; $$1 ${3:<=} ${4:number}; $$1${5:++}) {
+	${0:// TODO}
+}
+endsnippet
+
+
+
+snippet For
+for ($${1:i} = ${2:0}; $$1 ${3:<=} ${4:number}; $$1${5:--}) {
+	${0:// TODO}
+}
+endsnippet
+
+
+
+snippet each
+foreach (${1:$array}) as $${2:variable} {
+	${0:// TODO}
+}
+endsnippet
+
+
+
+snippet "\bfor_?each" "foreach" r
+foreach (${1:$array}) as $${2:variable} {
+	${0:// TODO}
+}
+endsnippet
