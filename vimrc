@@ -31,6 +31,7 @@ Bundle 'FuzzyFinder'
 Bundle 'a.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'taglist.vim'
+Bundle 'majutsushi/tagbar'
 "Bundle 'humiaozuzu/TabBar'
 Bundle 'cscope_macros.vim'
 Bundle 'Lokaltog/vim-easymotion'
@@ -405,6 +406,11 @@ nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
 " nmap <Leader>k :bd<CR>:bn<CR>
 
 " ---------------
+" Tagbar 
+" ---------------
+nmap <F4> :TagbarToggle<CR>
+
+" ---------------
 " SuperTab
 " ---------------
 " Set these up for cross-buffer completion (something Neocachecompl has a hard
@@ -456,7 +462,7 @@ let g:haskell_indent_if=4
 " taglist
 " -----------------
 let g:Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
-nnoremap <silent> <F4> :TlistToggle<CR>
+nnoremap <silent> <F8> :TlistToggle<CR>
 let g:Tlist_Show_One_File=1
 let g:Tlist_Use_Right_Window=1
 let g:Tlist_Exit_OnlyWindow=1
