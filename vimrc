@@ -43,6 +43,8 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/nerdcommenter'
 " Automatic helpers
+Bundle 'def-lkb/merlin', {'rtp': 'vim/merlin/'}
+Bundle 'def-lkb/vimbufsync'
 Bundle 'Raimondi/delimitMate'
 Bundle 'scrooloose/syntastic'
 Bundle 'ervandew/supertab'
@@ -59,7 +61,7 @@ Bundle "SirVer/ultisnips"
 "Bundle "tomtom/tlib_vim"
 "Bundle "snipmate-snippets"
 " Language Additions
-Bundle 'mattn/zencoding-vim'
+Bundle 'mattn/emmet-vim'
 Bundle 'tpope/vim-rvm'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tangledhelix/vim-octopress'
@@ -114,6 +116,8 @@ endif
 set t_Co=256 " XXX This has problem on real terminal, fix it
 "colorscheme inkpot
 "colorscheme cobalt
+"set background=dark
+"colorscheme solarized
 colorscheme monokai
 
 " ---------------
@@ -449,12 +453,6 @@ au Bufenter *.hs compiler ghc
 let g:haskell_indent_if=4
 
 " -----------------
-" ZenCoding
-" -----------------
-let g:use_zen_complete_tag=1
-let g:user_zen_expandabbr_key='<c-j>'
-
-" -----------------
 " taglist
 " -----------------
 let g:Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
@@ -541,6 +539,7 @@ nnoremap <Leader>d :Kwbd<CR>
 let g:syntastic_mode_map={ 'mode': 'passive',
                          \ 'active_filetypes': ['ruby', 'python', 'ocaml', 'java', 'go'],
                          \ 'passive_filetypes': ['c'] }
+let g:syntastic_ruby_checkers=['rubocop']
 
 " ---------------
 " EasyMotion 
@@ -552,5 +551,4 @@ let g:EasyMotion_mapping_F='F'
 set exrc
 set secure
 
-"set background=dark
-"colorscheme solarized
+autocmd FileType ocaml source /Users/dan/.opam/4.01.0dev+trunk/share/typerex/ocp-indent/ocp-indent.vim
