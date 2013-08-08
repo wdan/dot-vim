@@ -31,11 +31,11 @@ Bundle 'FuzzyFinder'
 Bundle 'a.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'taglist.vim'
-" Bundle 'humiaozuzu/TabBar'
+"Bundle 'humiaozuzu/TabBar'
 Bundle 'cscope_macros.vim'
 Bundle 'Lokaltog/vim-easymotion'
 " UI Additions
-Bundle 'Yggdroot/indentLine'
+"Bundle 'Yggdroot/indentLine'
 Bundle 'dickeyxxx/status.vim'
 Bundle 'Lokaltog/vim-powerline'
 " Commands
@@ -113,6 +113,9 @@ endif
 " ---------------
 set t_Co=256 " XXX This has problem on real terminal, fix it
 "colorscheme inkpot
+"colorscheme cobalt
+colorscheme monokai
+
 " ---------------
 " File encodings
 " ---------------
@@ -330,6 +333,19 @@ endif
 " Plugin Configuration
 " ----------------------------------------
 
+" ---------------
+" Utilsnaps 
+" ---------------
+if has('python')
+  let g:snips_author = 'Aldis Berjoza'
+  let g:snips_author_email = 'graudeejs@yandex.com'
+  let g:UltiSnipsExpandTrigger = "<tab>"
+  let g:UltiSnipsJumpForwardTrigger = "<tab>"
+  let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+  let g:UltiSnipsSnippetDirectories = ["snippets"]
+else
+  call add(g:pathogen_disabled, 'ultisnips')
+endif
 
 " ---------------
 " ocaml-annot 
@@ -357,6 +373,7 @@ let g:dash_map = {
       \ 'scala'        : 'scala',
       \ 'php'        : 'php',
       \ }
+
 " ---------------
 " pydiction 
 " ---------------
@@ -535,19 +552,5 @@ let g:EasyMotion_mapping_F='F'
 set exrc
 set secure
 
-syntax on
-let g:solarized_visibility = "high"
-let g:solarized_contrast = "high"
-set background=dark
-colorscheme solarized
-
-if has('python')
-  let g:snips_author = 'Aldis Berjoza'
-  let g:snips_author_email = 'graudeejs@yandex.com'
-  let g:UltiSnipsExpandTrigger = "<tab>"
-  let g:UltiSnipsJumpForwardTrigger = "<tab>"
-  let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-  let g:UltiSnipsSnippetDirectories = ["snippets"]
-else
-  call add(g:pathogen_disabled, 'ultisnips')
-endif
+"set background=dark
+"colorscheme solarized
