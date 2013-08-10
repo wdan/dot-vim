@@ -1,71 +1,85 @@
-snippet #!
-	#!/usr/bin/env falcon
+snippet #! "#!"
+#!/usr/bin/env falcon
+endsnippet
 
 # Import
-snippet imp
-	import ${1:module}
+snippet imp "imp"
+import ${1:module}
+endsnippet
 
 # Function
-snippet fun
-	function ${2:function_name}(${3})
-		${4}
-	end
+snippet fun "fun"
+function ${2:function_name}(${3})
+	${4}
+end
+endsnippet
 
 # Class
-snippet class
-	class ${1:class_name}(${2:class_params})
-		${3:/* members/methods */}
-	end
+snippet class "class"
+class ${1:class_name}(${2:class_params})
+	${3:/* members/methods */}
+end
+endsnippet
 
 # If
-snippet if
-	if ${1:condition}
-		${2}
-	end
+snippet if "if"
+if ${1:condition}
+	${2}
+end
+endsnippet
 
 # If else
-snippet ife
-	if ${1:condition}
-		${2}
-	else
-	    ${1}
-	end
+snippet ife "ife"
+if ${1:condition}
+	${2}
+else
+    ${1}
+end
+endsnippet
 
 # If else if
-snippet eif
-	elif ${1:condition}
-		${2}
+snippet eif "eif"
+elif ${1:condition}
+	${2}
+endsnippet
 
 # Switch case
-snippet switch
-	switch ${1:expression}
-		case ${2:item}
-		case ${3:item}
-		default
-	end
+snippet switch "switch"
+switch ${1:expression}
+	case ${2:item}
+	case ${3:item}
+	default
+end
+endsnippet
 
 # Select
-snippet select
-	select ${1:variable}
-		case ${2:TypeSpec}
-		case ${3:TypeSpec}
-		default
-	end
+snippet select "select"
+select ${1:variable}
+	case ${2:TypeSpec}
+	case ${3:TypeSpec}
+	default
+end
+endsnippet
 
 # For/in Loop
-snippet forin
-	for ${1:element} in ${2:container}
-		${3}
-	end
+snippet forin "forin"
+for ${1:element} in ${2:container}
+	${3}
+end
+endsnippet
 
 # For/to Loop
-snippet forto
-	for ${1:lowerbound} to ${2:upperbound}
-		${3}
-	end
+snippet forto "forto"
+for ${1:lowerbound} to ${2:upperbound}
+	${3}
+end
+endsnippet
 
 # While Loop
-snippet while
-	while ${1:conidition}
-		${2}
-	end
+snippet wh "wh"
+while ${1:conidition}
+	${2}
+end
+endsnippet
+
+
