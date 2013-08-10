@@ -1,3 +1,4 @@
+
 " CPC
 au BufNewFile,BufRead *.cpc setf c
 au BufNewFile,BufRead *.cpc syn keyword cType cps
@@ -22,7 +23,7 @@ Bundle 'gmarik/vundle'
 " Plugin Bundles
 " ---------------
 " Theme
-Bundle 'altercation/vim-colors-solarized'
+"Bundle 'altercation/vim-colors-solarized'
 " Search
 Bundle 'rking/ag.vim'
 " Navigation
@@ -32,7 +33,7 @@ Bundle 'a.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'taglist.vim'
 Bundle 'majutsushi/tagbar'
-"Bundle 'humiaozuzu/TabBar'
+Bundle 'humiaozuzu/TabBar'
 Bundle 'cscope_macros.vim'
 Bundle 'Lokaltog/vim-easymotion'
 " UI Additions
@@ -44,6 +45,8 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/nerdcommenter'
 " Automatic helpers
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'plasticboy/vim-markdown'
 Bundle 'def-lkb/merlin', {'rtp': 'vim/merlin/'}
 Bundle 'def-lkb/vimbufsync'
 Bundle 'Raimondi/delimitMate'
@@ -228,6 +231,7 @@ abbreviate teh the
 " Make line completion easier
 imap <C-l> <C-x><C-l>
 
+imap <Leader>q <Esc>
 map <F5> :make
 map <F7> :cnext
 map [[ :w
@@ -342,12 +346,10 @@ endif
 " Utilsnaps 
 " ---------------
 if has('python')
-  let g:snips_author = 'Aldis Berjoza'
-  let g:snips_author_email = 'graudeejs@yandex.com'
   let g:UltiSnipsExpandTrigger = "<tab>"
   let g:UltiSnipsJumpForwardTrigger = "<tab>"
   let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-  let g:UltiSnipsSnippetDirectories = ["snippets"]
+  let g:UltiSnipsSnippetDirectories = ["ultisnips"]
 else
   call add(g:pathogen_disabled, 'ultisnips')
 endif
@@ -398,12 +400,12 @@ let g:agprg="/usr/local/bin/ag --column"
 " ---------------
 
 nnoremap <silent> <Leader>f :CtrlPCurWD<CR>
-nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
+nnoremap <silent> <Leader>m :CtrlPBuffer<CR>
 
 " ---------------
 " Tabbar 
 " ---------------
-" nmap <Leader>k :bd<CR>:bn<CR>
+ nmap <Leader>k :bd<CR>:bn<CR>
 
 " ---------------
 " Tagbar 
@@ -415,8 +417,8 @@ nmap <F4> :TagbarToggle<CR>
 " ---------------
 " Set these up for cross-buffer completion (something Neocachecompl has a hard
 " time with)
-let g:SuperTabDefaultCompletionType="<c-x><c-n>"
-let g:SuperTabContextDefaultCompletionType="<c-x><c-n>"
+"let g:SuperTabDefaultCompletionType = "<leader><tab>"
+"let g:SuperTabContextDefaultCompletionType = "<leader><tab>"
 
 " ---------------
 " Neocachecompl
@@ -431,6 +433,11 @@ let g:neocomplcache_auto_completion_start_length=1
 " manpageview
 " -----------------
 let g:manpageview_winopen="hsplit="
+
+" -----------------
+" Markdown
+" -----------------
+let g:vim_markdown_folding_disabled=1
 
 " -----------------
 " LaTeX-suite
@@ -539,6 +546,13 @@ nmap <Leader>bc :BundleClean<CR>
 nnoremap <Leader>d :Kwbd<CR>
 
 " ---------------
+" YouCompleteMe
+" ---------------
+let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py"
+let g:ycm_key_list_select_completion = ['<leader><tab>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-TAB>', '<Up>']
+
+" ---------------
 " Syntastic
 " ---------------
 
@@ -558,3 +572,19 @@ set exrc
 set secure
 
 autocmd FileType ocaml source /Users/dan/.opam/4.01.0dev+trunk/share/typerex/ocp-indent/ocp-indent.vim
+
+"Enable folding, I find it very useful
+set fen
+set fdl=0
+
+"Auto indent
+set ai
+
+"Smart indet
+set si
+
+"C-style indenting
+"set cindent
+
+"Wrap line
+set wrap
