@@ -55,7 +55,7 @@ Bundle 'ervandew/supertab'
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-session'
 Bundle 'Shougo/neocomplcache'
-Bundle 'rkulla/pydiction'
+"Bundle 'rkulla/pydiction'
 Bundle 'avsm/ocaml-annot'
 " SnipMate
 Bundle "SirVer/ultisnips"
@@ -387,8 +387,8 @@ let g:dash_map = {
 filetype on
 filetype indent on
 filetype plugin on
-let g:pydiction_location ='~/.vim/bundle/pydiction/complete-dict'
-let g:pydiction_menu_height = 20
+"let g:pydiction_location ='~/.vim/bundle/pydiction/complete-dict'
+"let g:pydiction_menu_height = 20
 
 " ---------------
 " ag.vim 
