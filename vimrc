@@ -162,7 +162,7 @@ set showcmd " display incomplete commands
 set autowrite " Writes on make/shell commands
 set wildignore+=*.o,*.obj,.git
 set scrolloff=7 " Always keep 5 lines above/below the cursor
-set timeoutlen=200 " Time to wait for a command (after Leader for example)
+set timeoutlen=250 " Time to wait for a command (after Leader for example)
 
 " ---------------
 " Text Format
@@ -309,8 +309,14 @@ autocmd filetype go setlocal makeprg=gomake
 " cscope
 " ---------------
 set csprg=/usr/local/bin/cscope
-set cscopequickfix=s-,d-,i-,t-,e-
+set cscopequickfix=s-,c-,d-,i-,t-,e-
 nmap <C-c>c :cs find c <C-R>=expand("<cword>")<CR><CR> 
+nmap <C-c>s :cs find s <C-R>=expand("<cword>")<CR><CR> 
+nmap <C-c>d :cs find d <C-R>=expand("<cword>")<CR><CR> 
+nmap <C-c>g :cs find g <C-R>=expand("<cword>")<CR><CR> 
+nmap <C-c>t :cs find t <C-R>=expand("<cword>")<CR><CR> 
+nmap <C-c>f :cs find f <C-R>=expand("<cword>")<CR><CR> 
+nmap <C-c>i :cs find i <C-R>=expand("<cword>")<CR><CR> 
 " ---------------
 " netrw
 " ---------------
@@ -588,3 +594,9 @@ set si
 
 "Wrap line
 set wrap
+
+set guifont=Monaco:h12
+nmap <F3> :!find . -iname '*.c' -o -iname '*.cpp' -o -iname '*.h' -o -iname '*.hpp' > cscope.files<CR>
+  \:!cscope -Rbkq -i cscope.files -f cscope.out<CR>
+  \:!ctags -R<CR>
+  \:cs reset<CR>
