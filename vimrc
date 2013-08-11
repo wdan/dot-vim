@@ -33,7 +33,7 @@ Bundle 'a.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'taglist.vim'
 Bundle 'majutsushi/tagbar'
-Bundle 'humiaozuzu/TabBar'
+"Bundle 'humiaozuzu/TabBar'
 Bundle 'cscope_macros.vim'
 Bundle 'Lokaltog/vim-easymotion'
 " UI Additions
@@ -558,6 +558,13 @@ let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extr
 let g:ycm_key_list_select_completion = ['<leader><tab>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-TAB>', '<Up>']
 
+  let g:ycm_filetype_blacklist = {
+        \ 'notes' : 1,
+        \ 'markdown' : 1,
+        \ 'text' : 1,
+        \ 'python': 1,
+        \}
+
 " ---------------
 " Syntastic
 " ---------------
@@ -566,6 +573,7 @@ let g:syntastic_mode_map={ 'mode': 'passive',
                          \ 'active_filetypes': ['ruby', 'python', 'ocaml', 'java', 'go'],
                          \ 'passive_filetypes': ['c'] }
 let g:syntastic_ruby_checkers=['rubocop']
+"let g:syntastic_ocaml_checkers=['merlin']
 
 " ---------------
 " EasyMotion 
