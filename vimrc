@@ -1,8 +1,3 @@
-
-" CPC
-au BufNewFile,BufRead *.cpc setf c
-au BufNewFile,BufRead *.cpc syn keyword cType cps
-au BufNewFile,BufRead *.cpc syn keyword cStatement cpc_spawn cpc_detached cpc_attached
 " ----------------------------------------
 " Vundle
 " ----------------------------------------
@@ -80,7 +75,9 @@ Bundle 'L9'
 Bundle 'genutils'
 
 " Automatically detect file types. (must turn on after Vundle)
-filetype plugin indent on
+filetype on
+filetype indent on
+filetype plugin on
 
 " ----------------------------------------
 " Platform Specific Configuration
@@ -101,7 +98,7 @@ if has('win32') || has('win64')
   cd ~
 elseif has('gui_running')
   if has("gui_macvim")
-    set guifont=Monaco:h14
+    set guifont=Monaco:h11
     " e: tab page, g: gray menu, m: menu bar, t: tearoff menu items
     set guioptions=egmt
     " commands like yy will directly put content into mac clipboard
@@ -113,6 +110,9 @@ endif
 " ----------------------------------------
 " Regular Vim Configuartion (No Plugins Needed)
 " ----------------------------------------
+
+set exrc
+set secure
 
 " ---------------
 " Color
@@ -144,6 +144,8 @@ set ruler " show the cursor position all the time
 set nu
 set wrap " wrap long text when displaying
 set laststatus=2
+set fen  " Enable folding, I find it very useful
+set fdl=0
 
 "set cmdheight=2
 "set list
@@ -172,6 +174,7 @@ set backspace=indent,eol,start " allow backspacing over everything in insert mod
 set shiftwidth=4  " Tabs under smart indent
 set cindent
 set autoindent
+set smartindent " Smart indet
 set smarttab
 set textwidth=80
 " for better formatting for multi-byte characters
@@ -235,6 +238,12 @@ imap <Leader>q <Esc>
 map <F5> :make
 map <F7> :cnext
 map [[ :w
+
+"Auto cscope and ctags 
+nmap <F3> :!find . -iname '*.c' -o -iname '*.cpp' -o -iname '*.h' -o -iname '*.hpp' > cscope.files<CR>
+  \:!cscope -Rbkq -i cscope.files -f cscope.out<CR>
+  \:!ctags -R<CR>
+  \:cs reset<CR>
 
 " Jump to the exact location of the mark
 nmap ' `
@@ -300,6 +309,11 @@ autocmd filetype markdown setlocal ts=2 | setlocal sw=2 | setlocal expandtab
 autocmd filetype ocaml setlocal shiftwidth=2| setlocal ts=2| setlocal sw=2 | setlocal expandtab
 autocmd filetype go setlocal ts=4 | setlocal sw=4 | setlocal noexpandtab
 autocmd filetype go setlocal makeprg=gomake
+
+" CPC
+au BufNewFile,BufRead *.cpc setf c
+au BufNewFile,BufRead *.cpc syn keyword cType cps
+au BufNewFile,BufRead *.cpc syn keyword cStatement cpc_spawn cpc_detached cpc_attached
 
 " ----------------------------------------
 " Misc.
@@ -390,9 +404,6 @@ let g:dash_map = {
 " ---------------
 " pydiction 
 " ---------------
-filetype on
-filetype indent on
-filetype plugin on
 "let g:pydiction_location ='~/.vim/bundle/pydiction/complete-dict'
 "let g:pydiction_menu_height = 20
 
@@ -582,29 +593,7 @@ let g:syntastic_ruby_checkers=['rubocop']
 let g:EasyMotion_mapping_f='f'
 let g:EasyMotion_mapping_F='F'
 
-set exrc
-set secure
-
+" ---------------
+" ocp-indent 
+" ---------------
 autocmd FileType ocaml source /Users/dan/.opam/4.01.0dev+trunk/share/typerex/ocp-indent/ocp-indent.vim
-
-"Enable folding, I find it very useful
-set fen
-set fdl=0
-
-"Auto indent
-set ai
-
-"Smart indet
-set si
-
-"C-style indenting
-"set cindent
-
-"Wrap line
-set wrap
-
-set guifont=Monaco:h12
-nmap <F3> :!find . -iname '*.c' -o -iname '*.cpp' -o -iname '*.h' -o -iname '*.hpp' > cscope.files<CR>
-  \:!cscope -Rbkq -i cscope.files -f cscope.out<CR>
-  \:!ctags -R<CR>
-  \:cs reset<CR>
