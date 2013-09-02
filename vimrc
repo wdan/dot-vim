@@ -34,7 +34,8 @@ Bundle 'Lokaltog/vim-easymotion'
 " UI Additions
 "Bundle 'Yggdroot/indentLine'
 Bundle 'dickeyxxx/status.vim'
-Bundle 'Lokaltog/vim-powerline'
+Bundle 'bling/vim-airline'
+"Bundle 'Lokaltog/vim-powerline'
 " Commands
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
@@ -42,7 +43,7 @@ Bundle 'scrooloose/nerdcommenter'
 " Automatic helpers
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'plasticboy/vim-markdown'
-Bundle 'def-lkb/merlin', {'rtp': 'vim/merlin/'}
+"Bundle 'def-lkb/merlin', {'rtp': 'vim/merlin/'}
 Bundle 'def-lkb/vimbufsync'
 Bundle 'Raimondi/delimitMate'
 Bundle 'scrooloose/syntastic'
@@ -239,6 +240,10 @@ map <F5> :make
 map <F7> :cnext
 map [[ :w
 
+" Quickfix map
+map <leader>cj :cn<CR>
+map <leader>ck :cp<CR>
+
 "Auto cscope and ctags 
 nmap <F3> :!find . -iname '*.c' -o -iname '*.cpp' -o -iname '*.h' -o -iname '*.hpp' > cscope.files<CR>
   \:!cscope -Rbkq -i cscope.files -f cscope.out<CR>
@@ -296,9 +301,9 @@ autocmd filetype c,cpp abbreviate #d #define
 autocmd filetype c,cpp abbreviate #e #endif
 "autocmd filetype c,cpp set list | set listchars=tab:»·,trail:·
 autocmd filetype c,cpp,java,go inoremap{ {<CR>}<Esc>ko
-autocmd filetype ruby setlocal shiftwidth=2
+autocmd filetype ruby setlocal shiftwidth=2 | setlocal ts=2 | setlocal expandtab
 autocmd filetype help setlocal nonu
-autocmd filetype html setlocal shiftwidth=4
+autocmd filetype html setlocal ts=4 | setlocal sw=4 | setlocal softtabstop=4 | setlocal expandtab
 autocmd filetype python setlocal expandtab | setlocal shiftwidth=4 | setlocal tabstop=4 | setlocal softtabstop=4
 autocmd filetype tex setlocal ts=4 | setlocal sw=4 | setlocal softtabstop=4 | setlocal expandtab
 autocmd filetype lua setlocal ts=2 | setlocal sw=2 | setlocal softtabstop=2 | setlocal expandtab
@@ -406,6 +411,11 @@ let g:dash_map = {
 " ---------------
 "let g:pydiction_location ='~/.vim/bundle/pydiction/complete-dict'
 "let g:pydiction_menu_height = 20
+
+" ---------------
+" ag.vim 
+" ---------------
+let g:airline_theme="bubblegum"
 
 " ---------------
 " ag.vim 
