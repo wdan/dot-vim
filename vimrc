@@ -23,7 +23,7 @@ Bundle 'gmarik/vundle'
 Bundle 'rking/ag.vim'
 " Navigation
 Bundle 'scrooloose/nerdtree'
-Bundle 'FuzzyFinder' 
+Bundle 'FuzzyFinder'
 Bundle 'a.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'taglist.vim'
@@ -43,13 +43,13 @@ Bundle 'scrooloose/nerdcommenter'
 " Automatic helpers
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'plasticboy/vim-markdown'
-"Bundle 'def-lkb/merlin', {'rtp': 'vim/merlin/'}
 Bundle 'def-lkb/vimbufsync'
 Bundle 'Raimondi/delimitMate'
 Bundle 'scrooloose/syntastic'
 Bundle 'ervandew/supertab'
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-session'
+Bundle 'tpope/vim-sensible'
 Bundle 'Shougo/neocomplcache'
 "Bundle 'rkulla/pydiction'
 Bundle 'avsm/ocaml-annot'
@@ -591,10 +591,16 @@ let g:ycm_key_list_previous_completion = ['<C-TAB>', '<Up>']
 " ---------------
 
 let g:syntastic_mode_map={ 'mode': 'passive',
-                         \ 'active_filetypes': ['ruby', 'python', 'ocaml', 'java', 'go'],
+                         \ 'active_filetypes': ['ruby', 'python', 'ocaml', 'java', 'go', 'javascript'],
                          \ 'passive_filetypes': ['c'] }
 let g:syntastic_ruby_checkers=['rubocop']
-"let g:syntastic_ocaml_checkers=['merlin']
+
+" ---------------
+" Merlin 
+" ---------------
+"let s:ocamlmerlin=substitute(system('opam config var share'),'\n$','','''') .  "/ocamlmerlin"
+:set rtp+=/Users/dan/.opam/4.01.0/share/ocamlmerlin/vim
+:set rtp+=/Users/dan/.opam/4.01.0/share/ocamlmerlin/vimbufsync
 
 " ---------------
 " EasyMotion 
@@ -602,6 +608,12 @@ let g:syntastic_ruby_checkers=['rubocop']
 
 let g:EasyMotion_mapping_f='f'
 let g:EasyMotion_mapping_F='F'
+
+" ---------------
+" whitespace 
+" ---------------
+:highlight ExtraWhitespace ctermbg=red guibg=red
+:match ExtraWhitespace /\s\+$/
 
 " ---------------
 " ocp-indent 
