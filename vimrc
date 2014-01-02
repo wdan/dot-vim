@@ -596,26 +596,26 @@ let g:syntastic_mode_map={ 'mode': 'passive',
 let g:syntastic_ruby_checkers=['rubocop']
 
 " ---------------
-" Merlin 
+" Merlin
 " ---------------
 "let s:ocamlmerlin=substitute(system('opam config var share'),'\n$','','''') .  "/ocamlmerlin"
 :set rtp+=/Users/dan/.opam/4.01.0/share/ocamlmerlin/vim
 :set rtp+=/Users/dan/.opam/4.01.0/share/ocamlmerlin/vimbufsync
 
 " ---------------
-" EasyMotion 
+" EasyMotion
 " ---------------
 
 let g:EasyMotion_mapping_f='f'
 let g:EasyMotion_mapping_F='F'
 
 " ---------------
-" whitespace 
+" whitespace
 " ---------------
 :highlight ExtraWhitespace ctermbg=red guibg=red
 :match ExtraWhitespace /\s\+$/
 
 " ---------------
-" ocp-indent 
+" ocp-indent
 " ---------------
 autocmd FileType ocaml source /Users/dan/.opam/4.01.0dev+trunk/share/typerex/ocp-indent/ocp-indent.vim
