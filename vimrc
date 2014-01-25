@@ -11,7 +11,7 @@ set rtp+=~/.vim/bundle/vundle/
 set rtp+=~/.vim/vim-golang/
 call vundle#rc()
 
-" let Vundle manage Vundle. required! 
+" let Vundle manage Vundle. required!
 Bundle 'gmarik/vundle'
 
 " ---------------
@@ -41,6 +41,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/nerdcommenter'
 " Automatic helpers
+Bundle 'derekwyatt/vim-scala'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'def-lkb/vimbufsync'
@@ -244,7 +245,7 @@ map [[ :w
 map <leader>cj :cn<CR>
 map <leader>ck :cp<CR>
 
-"Auto cscope and ctags 
+"Auto cscope and ctags
 nmap <F3> :!find . -iname '*.c' -o -iname '*.cpp' -o -iname '*.h' -o -iname '*.hpp' > cscope.files<CR>
   \:!cscope -Rbkq -i cscope.files -f cscope.out<CR>
   \:!ctags -R<CR>
@@ -305,6 +306,9 @@ autocmd filetype ruby setlocal shiftwidth=2 | setlocal ts=2 | setlocal expandtab
 autocmd filetype help setlocal nonu
 autocmd filetype html setlocal ts=4 | setlocal sw=4 | setlocal softtabstop=4 | setlocal expandtab
 autocmd filetype python setlocal expandtab | setlocal shiftwidth=4 | setlocal tabstop=4 | setlocal softtabstop=4
+autocmd filetype javascript setlocal expandtab | setlocal shiftwidth=4 | setlocal tabstop=4 | setlocal softtabstop=4
+autocmd filetype scala setlocal expandtab | setlocal shiftwidth=4 | setlocal tabstop=4 | setlocal softtabstop=4
+autocmd filetype css setlocal expandtab | setlocal shiftwidth=4 | setlocal tabstop=4 | setlocal softtabstop=4
 autocmd filetype tex setlocal ts=4 | setlocal sw=4 | setlocal softtabstop=4 | setlocal expandtab
 autocmd filetype lua setlocal ts=2 | setlocal sw=2 | setlocal softtabstop=2 | setlocal expandtab
 autocmd filetype sh setlocal ts=4 | setlocal sw=4 | setlocal softtabstop=4 | setlocal expandtab
@@ -329,13 +333,13 @@ au BufNewFile,BufRead *.cpc syn keyword cStatement cpc_spawn cpc_detached cpc_at
 " ---------------
 set csprg=/usr/local/bin/cscope
 set cscopequickfix=s-,c-,d-,i-,t-,e-
-nmap <C-c>c :cs find c <C-R>=expand("<cword>")<CR><CR> 
-nmap <C-c>s :cs find s <C-R>=expand("<cword>")<CR><CR> 
-nmap <C-c>d :cs find d <C-R>=expand("<cword>")<CR><CR> 
-nmap <C-c>g :cs find g <C-R>=expand("<cword>")<CR><CR> 
-nmap <C-c>t :cs find t <C-R>=expand("<cword>")<CR><CR> 
-nmap <C-c>f :cs find f <C-R>=expand("<cword>")<CR><CR> 
-nmap <C-c>i :cs find i <C-R>=expand("<cword>")<CR><CR> 
+nmap <C-c>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-c>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-c>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+nmap <C-c>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-c>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-c>f :cs find f <C-R>=expand("<cword>")<CR><CR>
+nmap <C-c>i :cs find i <C-R>=expand("<cword>")<CR><CR>
 " ---------------
 " netrw
 " ---------------
@@ -368,7 +372,7 @@ endif
 " ----------------------------------------
 
 " ---------------
-" Utilsnaps 
+" Utilsnaps
 " ---------------
 if has('python')
   let g:UltiSnipsExpandTrigger = "<tab>"
@@ -380,18 +384,18 @@ else
 endif
 
 " ---------------
-" ocaml-annot 
+" ocaml-annot
 " ---------------
 function! OCamlType()
   let col  = col('.')
   let line = line('.')
   let file = expand("%:p:r")
   echo system("annot -n -type ".line." ".col." ".file.".annot")
-endfunction    
+endfunction
 map .t :call OCamlType()<return>
 
 " ---------------
-" dash 
+" dash
 " ---------------
 :nmap <silent> <leader>a <Plug>DashSearch
 let g:dash_map = {
@@ -407,18 +411,18 @@ let g:dash_map = {
       \ }
 
 " ---------------
-" pydiction 
+" pydiction
 " ---------------
 "let g:pydiction_location ='~/.vim/bundle/pydiction/complete-dict'
 "let g:pydiction_menu_height = 20
 
 " ---------------
-" ag.vim 
+" ag.vim
 " ---------------
 let g:airline_theme="bubblegum"
 
 " ---------------
-" ag.vim 
+" ag.vim
 " ---------------
 let g:agprg="/usr/local/bin/ag --column"
 
@@ -430,12 +434,12 @@ nnoremap <silent> <Leader>f :CtrlPCurWD<CR>
 nnoremap <silent> <Leader>m :CtrlPBuffer<CR>
 
 " ---------------
-" Tabbar 
+" Tabbar
 " ---------------
  nmap <Leader>k :bd<CR>:bn<CR>
 
 " ---------------
-" Tagbar 
+" Tagbar
 " ---------------
 nmap <F4> :TagbarToggle<CR>
 
@@ -479,7 +483,7 @@ set grepprg=grep\ -nH\ $*
 let NERDShutUp = 1
 
 " -----------------
-" NERD Tree 
+" NERD Tree
 " -----------------
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 nmap <Leader>n :NERDTreeToggle<CR>
@@ -591,9 +595,18 @@ let g:ycm_key_list_previous_completion = ['<C-TAB>', '<Up>']
 " ---------------
 
 let g:syntastic_mode_map={ 'mode': 'passive',
-                         \ 'active_filetypes': ['ruby', 'python', 'ocaml', 'java', 'go', 'javascript'],
-                         \ 'passive_filetypes': ['c'] }
+                         \ 'active_filetypes': ['ruby', 'python', 'ocaml', 'java', 'go', 'javascript', 'scala', 'c', 'cpp', 'css'],
+                         \ 'passive_filetypes': [] }
 let g:syntastic_ruby_checkers=['rubocop']
+let g:syntastic_java_checkers=['javac']
+let g:syntastic_python_checkers=['flake8']
+let g:syntastic_css_checkers=['csslint']
+let g:syntastic_go_checkers=['golint']
+let g:syntastic_c_checkers=['gcc']
+let g:syntastic_cpp_checkers=['gcc']
+let g:syntastic_javascript_checkers=['gjslint']
+let g:syntastic_scala_checkers=['fsc']
+let g:syntastic_ocaml_checkers=['camlp4o']
 
 " ---------------
 " Merlin
@@ -612,9 +625,12 @@ let g:EasyMotion_mapping_F='F'
 " ---------------
 " whitespace
 " ---------------
-:highlight ExtraWhitespace ctermbg=red guibg=red
-:match ExtraWhitespace /\s\+$/
-
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
 " ---------------
 " ocp-indent
 " ---------------
