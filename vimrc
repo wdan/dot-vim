@@ -125,6 +125,7 @@ set t_Co=256 " XXX This has problem on real terminal, fix it
 "set background=dark
 "colorscheme solarized
 colorscheme monokai
+"colorscheme Tomorrow-Night-Eighties 
 
 " ---------------
 " File encodings
@@ -307,7 +308,7 @@ autocmd filetype help setlocal nonu
 autocmd filetype html setlocal ts=4 | setlocal sw=4 | setlocal softtabstop=4 | setlocal expandtab
 autocmd filetype python setlocal expandtab | setlocal shiftwidth=4 | setlocal tabstop=4 | setlocal softtabstop=4
 autocmd filetype javascript setlocal expandtab | setlocal shiftwidth=4 | setlocal tabstop=4 | setlocal softtabstop=4
-autocmd filetype scala setlocal expandtab | setlocal shiftwidth=4 | setlocal tabstop=4 | setlocal softtabstop=4
+autocmd filetype scala setlocal expandtab | setlocal shiftwidth=2 | setlocal tabstop=2 | setlocal softtabstop=2
 autocmd filetype css setlocal expandtab | setlocal shiftwidth=4 | setlocal tabstop=4 | setlocal softtabstop=4
 autocmd filetype tex setlocal ts=4 | setlocal sw=4 | setlocal softtabstop=4 | setlocal expandtab
 autocmd filetype lua setlocal ts=2 | setlocal sw=2 | setlocal softtabstop=2 | setlocal expandtab
