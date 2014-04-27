@@ -379,7 +379,7 @@ if has('python')
   let g:UltiSnipsExpandTrigger = "<tab>"
   let g:UltiSnipsJumpForwardTrigger = "<tab>"
   let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-  let g:UltiSnipsSnippetDirectories = ["snippets"]
+  let g:UltiSnipsSnippetDirectories = ["ultisnips"]
 else
   call add(g:pathogen_disabled, 'ultisnips')
 endif
@@ -635,7 +635,8 @@ autocmd BufWinLeave * call clearmatches()
 " ---------------
 " ocp-indent
 " ---------------
-autocmd FileType ocaml source /Users/dan/.opam/4.01.0dev+trunk/share/typerex/ocp-indent/ocp-indent.vim
+autocmd FileType ocaml source /Users/dan/.vim/bundle/ocp-indent.vim
+
 au BufEnter *.ml setf ocaml
 au BufEnter *.mli setf ocaml
 au FileType ocaml call FT_ocaml()
@@ -652,3 +653,6 @@ function FT_ocaml()
   filetype plugin on
   syntax on
 endfunction
+
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
