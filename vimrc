@@ -43,7 +43,7 @@ Bundle 'scrooloose/nerdcommenter'
 " Automatic helpers
 Bundle 'marijnh/tern_for_vim'
 Bundle 'derekwyatt/vim-scala'
-Bundle 'Valloric/YouCompleteMe'
+"Bundle 'Valloric/YouCompleteMe'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'def-lkb/vimbufsync'
 Bundle 'Raimondi/delimitMate'
