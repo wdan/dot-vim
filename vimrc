@@ -41,6 +41,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/nerdcommenter'
 " Automatic helpers
+Bundle 'marijnh/tern_for_vim'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'plasticboy/vim-markdown'
@@ -121,11 +122,13 @@ set secure
 " ---------------
 set t_Co=256 " XXX This has problem on real terminal, fix it
 "colorscheme inkpot
-"colorscheme cobalt
+colorscheme cobalt
 "set background=dark
 "colorscheme solarized
 colorscheme monokai
-"colorscheme Tomorrow-Night-Eighties 
+"let g:molokai_original = 1
+"let g:rehash256 = 1
+"colorscheme Tomorrow-Night
 
 " ---------------
 " File encodings
@@ -581,8 +584,8 @@ nnoremap <Leader>d :Kwbd<CR>
 " YouCompleteMe
 " ---------------
 let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py"
-let g:ycm_key_list_select_completion = ['<leader><tab>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-TAB>', '<Up>']
+let g:ycm_key_list_select_completion = ['<C-f>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-b>', '<Up>']
 
   let g:ycm_filetype_blacklist = {
         \ 'notes' : 1,
@@ -608,6 +611,7 @@ let g:syntastic_cpp_checkers=['gcc']
 let g:syntastic_javascript_checkers=['gjslint']
 let g:syntastic_scala_checkers=['fsc']
 let g:syntastic_ocaml_checkers=['camlp4o']
+let g:syntastic_gjslint_conf="--nojsdoc"
 
 " ---------------
 " Merlin
