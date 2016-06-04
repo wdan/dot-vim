@@ -19,8 +19,10 @@ Bundle 'gmarik/vundle'
 " ---------------
 " Theme
 "Bundle 'altercation/vim-colors-solarized'
+Bundle 'thomashn/Vim-ShareLaTeX-Plugin'
 " Search
 Bundle 'rking/ag.vim'
+"Bundle 'https://github.com/neilagabriel/vim-geeknote'
 " Navigation
 Bundle 'scrooloose/nerdtree'
 Bundle 'FuzzyFinder'
@@ -35,6 +37,7 @@ Bundle 'Lokaltog/vim-easymotion'
 "Bundle 'Yggdroot/indentLine'
 Bundle 'dickeyxxx/status.vim'
 Bundle 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 "Bundle 'Lokaltog/vim-powerline'
 " Commands
 Bundle 'tpope/vim-surround'
@@ -43,7 +46,7 @@ Bundle 'scrooloose/nerdcommenter'
 " Automatic helpers
 Bundle 'marijnh/tern_for_vim'
 Bundle 'derekwyatt/vim-scala'
-"Bundle 'Valloric/YouCompleteMe'
+Bundle 'Valloric/YouCompleteMe'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'def-lkb/vimbufsync'
 Bundle 'Raimondi/delimitMate'
@@ -52,7 +55,7 @@ Bundle 'ervandew/supertab'
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-session'
 Bundle 'tpope/vim-sensible'
-Bundle 'Shougo/neocomplcache'
+Bundle 'Shougo/neocomplete'
 "Bundle 'rkulla/pydiction'
 Bundle 'avsm/ocaml-annot'
 " SnipMate
@@ -69,7 +72,11 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'tangledhelix/vim-octopress'
 Bundle 'tpope/vim-rails'
 Bundle 'kchmck/vim-coffee-script'
-Bundle 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+"Bundle 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
+Bundle 'lervag/vimtex'
+
 " Libraries
 Bundle 'rizzatti/funcoo.vim'
 Bundle 'rizzatti/dash.vim'
@@ -378,14 +385,13 @@ endif
 " ---------------
 " Utilsnaps
 " ---------------
-if has('python')
-  let g:UltiSnipsExpandTrigger = "<tab>"
-  let g:UltiSnipsJumpForwardTrigger = "<tab>"
-  let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-  let g:UltiSnipsSnippetDirectories = ["ultisnips"]
-else
-  call add(g:pathogen_disabled, 'ultisnips')
-endif
+"  
+"Plugin 'SirVer/ultisnips'
+"Plugin 'honza/vim-snippets'
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsSnippetDirectories = ["ultisnips"]
 
 " ---------------
 " ocaml-annot
@@ -423,7 +429,8 @@ let g:dash_map = {
 " ---------------
 " ag.vim
 " ---------------
-let g:airline_theme="bubblegum"
+let g:airline_theme='molokai'
+
 
 " ---------------
 " ag.vim
@@ -458,11 +465,16 @@ nmap <F4> :TagbarToggle<CR>
 " ---------------
 " Neocachecompl
 " ---------------
-let g:neocomplcache_enable_at_startup=1
-let g:neocomplcache_enable_auto_select=1 "Select the first entry automatically
-let g:neocomplcache_enable_cursor_hold_i=1
-let g:neocomplcache_cursor_hold_i_time=300
-let g:neocomplcache_auto_completion_start_length=1
+"let g:neocomplcache_enable_at_startup=1
+"let g:neocomplcache_enable_auto_select=1 "Select the first entry automatically
+"let g:neocomplcache_enable_cursor_hold_i=1
+"let g:neocomplcache_cursor_hold_i_time=300
+"let g:neocomplcache_auto_completion_start_length=1
+
+" ---------------
+" Neocomplete
+" ---------------
+let g:neocomplete#enable_at_startup = 1
 
 " -----------------
 " manpageview
@@ -598,9 +610,19 @@ let g:ycm_key_list_previous_completion = ['<C-b>', '<Up>']
 " Syntastic
 " ---------------
 
-let g:syntastic_mode_map={ 'mode': 'passive',
+let g:syntastic_mode_map={ 'mode': 'active',
                          \ 'active_filetypes': ['ruby', 'python', 'ocaml', 'java', 'go', 'javascript', 'scala', 'c', 'cpp', 'css'],
                          \ 'passive_filetypes': [] }
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 let g:syntastic_ruby_checkers=['rubocop']
 let g:syntastic_java_checkers=['javac']
 let g:syntastic_python_checkers=['flake8']
@@ -608,7 +630,8 @@ let g:syntastic_css_checkers=['csslint']
 let g:syntastic_go_checkers=['golint']
 let g:syntastic_c_checkers=['gcc']
 let g:syntastic_cpp_checkers=['gcc']
-let g:syntastic_javascript_checkers=['gjslint']
+"let g:syntastic_javascript_checkers=['gjslint']
+let g:syntastic_javascript_checkers=['eslint']
 let g:syntastic_scala_checkers=['fsc']
 let g:syntastic_ocaml_checkers=['camlp4o']
 let g:syntastic_gjslint_conf="--nojsdoc"
@@ -617,8 +640,8 @@ let g:syntastic_gjslint_conf="--nojsdoc"
 " Merlin
 " ---------------
 "let s:ocamlmerlin=substitute(system('opam config var share'),'\n$','','''') .  "/ocamlmerlin"
-:set rtp+=/Users/dan/.opam/4.01.0/share/ocamlmerlin/vim
-:set rtp+=/Users/dan/.opam/4.01.0/share/ocamlmerlin/vimbufsync
+:set rtp+=/Users/dan/.opam/4.02.0/share/ocamlmerlin/vim
+:set rtp+=/Users/dan/.opam/4.02.0/share/ocamlmerlin/vimbufsync
 
 " ---------------
 " EasyMotion
@@ -641,6 +664,7 @@ autocmd BufWinLeave * call clearmatches()
 " ---------------
 autocmd FileType ocaml source /Users/dan/.vim/bundle/ocp-indent.vim
 
+
 au BufEnter *.ml setf ocaml
 au BufEnter *.mli setf ocaml
 au FileType ocaml call FT_ocaml()
@@ -652,11 +676,19 @@ function FT_ocaml()
   set tabstop=2
   " ocp-indent with ocp-indent-vim
   let opamshare=system("opam config var share | tr -d '\n'")
-  execute "autocmd FileType ocaml source".opamshare."/vim/syntax/ocp-indent.vim"
+  execute "autocmd FileType ocaml source".opamshare."/ocp-indent/vim/indent/ocaml.vim"
   filetype indent on
   filetype plugin on
   syntax on
 endfunction
 
+" ---------------
+" jsx 
+" ---------------
+"
+let g:jsx_ext_required = 0
+
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
+
+
