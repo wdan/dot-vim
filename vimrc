@@ -72,6 +72,9 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'tangledhelix/vim-octopress'
 Bundle 'tpope/vim-rails'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'posva/vim-vue'
+Bundle 'lukaszkorecki/CoffeeTags'
+Bundle 'leafgarland/typescript-vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 "Bundle 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
@@ -595,15 +598,20 @@ nnoremap <Leader>d :Kwbd<CR>
 " ---------------
 " YouCompleteMe
 " ---------------
+set completeopt=longest,menu
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+let g:ycm_auto_trigger = 1
 let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py"
-let g:ycm_key_list_select_completion = ['<C-f>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-b>', '<Up>']
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+"let g:ycm_key_list_select_completion = ['<C-f>', '<Down>']
+"let g:ycm_key_list_previous_completion = ['<C-b>', '<Up>']
 
   let g:ycm_filetype_blacklist = {
         \ 'notes' : 1,
         \ 'markdown' : 1,
-        \ 'text' : 1,
-        \ 'python': 1,
+        \ 'text' : 1
         \}
 
 " ---------------
@@ -612,14 +620,14 @@ let g:ycm_key_list_previous_completion = ['<C-b>', '<Up>']
 
 let g:syntastic_mode_map={ 'mode': 'active',
                          \ 'active_filetypes': ['ruby', 'python', 'ocaml', 'java', 'go', 'javascript', 'scala', 'c', 'cpp', 'css'],
-                         \ 'passive_filetypes': [] }
+                         \ 'passive_filetypes': ['html'] }
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
