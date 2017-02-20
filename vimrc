@@ -56,6 +56,7 @@ Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-session'
 Bundle 'tpope/vim-sensible'
 Bundle 'Shougo/neocomplete'
+Bundle 'vim-scripts/pythoncomplete'
 "Bundle 'rkulla/pydiction'
 Bundle 'avsm/ocaml-annot'
 " SnipMate
@@ -66,6 +67,8 @@ Bundle "SirVer/ultisnips"
 "Bundle "tomtom/tlib_vim"
 "Bundle "snipmate-snippets"
 " Language Additions
+Bundle 'Quramy/tsuquyomi'
+Bundle 'Shougo/vimproc.vim'
 Bundle 'mattn/emmet-vim'
 Bundle 'tpope/vim-rvm'
 Bundle 'vim-ruby/vim-ruby'
@@ -73,9 +76,12 @@ Bundle 'tangledhelix/vim-octopress'
 Bundle 'tpope/vim-rails'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'posva/vim-vue'
+Bundle 'wavded/vim-stylus'
 Bundle 'lukaszkorecki/CoffeeTags'
 Bundle 'leafgarland/typescript-vim'
 Plugin 'pangloss/vim-javascript'
+Plugin 'isRuslan/vim-es6'
+" Plugin 'othree/yajs.vim'
 Plugin 'mxw/vim-jsx'
 "Bundle 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
 Bundle 'lervag/vimtex'
@@ -318,9 +324,10 @@ autocmd filetype c,cpp abbreviate #e #endif
 autocmd filetype c,cpp,java,go inoremap{ {<CR>}<Esc>ko
 autocmd filetype ruby setlocal shiftwidth=2 | setlocal ts=2 | setlocal expandtab
 autocmd filetype help setlocal nonu
-autocmd filetype html setlocal ts=4 | setlocal sw=4 | setlocal softtabstop=4 | setlocal expandtab
-autocmd filetype python setlocal expandtab | setlocal shiftwidth=4 | setlocal tabstop=4 | setlocal softtabstop=4
+autocmd filetype vue setlocal expandtab | setlocal shiftwidth=4 | setlocal tabstop=4 | setlocal softtabstop=4
+autocmd filetype html setlocal expandtab | setlocal shiftwidth=4 | setlocal tabstop=4 | setlocal softtabstop=4
 autocmd filetype javascript setlocal expandtab | setlocal shiftwidth=4 | setlocal tabstop=4 | setlocal softtabstop=4
+autocmd filetype python setlocal expandtab | setlocal shiftwidth=4 | setlocal tabstop=4 | setlocal softtabstop=4
 autocmd filetype scala setlocal expandtab | setlocal shiftwidth=2 | setlocal tabstop=2 | setlocal softtabstop=2
 autocmd filetype css setlocal expandtab | setlocal shiftwidth=4 | setlocal tabstop=4 | setlocal softtabstop=4
 autocmd filetype tex setlocal ts=4 | setlocal sw=4 | setlocal softtabstop=4 | setlocal expandtab
@@ -388,7 +395,7 @@ endif
 " ---------------
 " Utilsnaps
 " ---------------
-"  
+"
 "Plugin 'SirVer/ultisnips'
 "Plugin 'honza/vim-snippets'
 let g:UltiSnipsExpandTrigger = "<tab>"
@@ -479,6 +486,76 @@ nmap <F4> :TagbarToggle<CR>
 " ---------------
 let g:neocomplete#enable_at_startup = 1
 
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
+
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+
+" AutoComplPop like behavior.
+"let g:neocomplete#enable_auto_select = 1
+
+" Shell like behavior(not recommended).
+"set completeopt+=longest
+"let g:neocomplete#enable_auto_select = 1
+"let g:neocomplete#disable_auto_complete = 1
+"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+" For perlomni.vim setting.
+" https://github.com/c9s/perlomni.vim
+let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+
 " -----------------
 " manpageview
 " -----------------
@@ -500,6 +577,7 @@ set grepprg=grep\ -nH\ $*
 " NERD commenter
 " -----------------
 let NERDShutUp = 1
+let NERDSpaceDelims=1
 
 " -----------------
 " NERD Tree
@@ -607,6 +685,7 @@ let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
 "let g:ycm_key_list_select_completion = ['<C-f>', '<Down>']
 "let g:ycm_key_list_previous_completion = ['<C-b>', '<Up>']
+let g:ycm_filetype_specific_completion_to_disable = { 'javascript': 1}
 
   let g:ycm_filetype_blacklist = {
         \ 'notes' : 1,
@@ -691,7 +770,7 @@ function FT_ocaml()
 endfunction
 
 " ---------------
-" jsx 
+" jsx
 " ---------------
 "
 let g:jsx_ext_required = 0
@@ -699,4 +778,29 @@ let g:jsx_ext_required = 0
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 
+" ---------------
+" vue
+" ---------------
+
+
+let g:ft = ''
+fu! NERDCommenter_before()
+  if &ft == 'vue'
+    let g:ft = 'vue'
+    let stack = synstack(line('.'), col('.'))
+    if len(stack) > 0
+      let syn = synIDattr((stack)[0], 'name')
+      if len(syn) > 0
+        let syn = tolower(syn)
+        exe 'setf '.syn
+      endif
+    endif
+  endif
+endfu
+fu! NERDCommenter_after()
+  if g:ft == 'vue'
+    setf vue
+    g:ft
+  endif
+endfu
 
