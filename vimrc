@@ -313,33 +313,6 @@ autocmd BufReadPost *
   \   exe "normal! g`\"" |
   \ endif
 
-" cpp, java specific abbreviation
-"autocmd filetype c,cpp,java set shiftwidth=8 | set ts=8 | set noexpandtab
-noremap ( ()<Esc>i)
-autocmd filetype c,cpp,java set shiftwidth=4 | set ts=4 | set expandtab
-autocmd filetype c,cpp abbreviate #i #include
-autocmd filetype c,cpp abbreviate #d #define
-autocmd filetype c,cpp abbreviate #e #endif
-"autocmd filetype c,cpp set list | set listchars=tab:»·,trail:·
-autocmd filetype c,cpp,java,go inoremap{ {<CR>}<Esc>ko
-autocmd filetype ruby setlocal shiftwidth=2 | setlocal ts=2 | setlocal expandtab
-autocmd filetype help setlocal nonu
-autocmd filetype vue setlocal expandtab | setlocal shiftwidth=4 | setlocal tabstop=4 | setlocal softtabstop=4
-autocmd filetype html setlocal expandtab | setlocal shiftwidth=4 | setlocal tabstop=4 | setlocal softtabstop=4
-autocmd filetype javascript setlocal expandtab | setlocal shiftwidth=4 | setlocal tabstop=4 | setlocal softtabstop=4
-autocmd filetype python setlocal expandtab | setlocal shiftwidth=4 | setlocal tabstop=4 | setlocal softtabstop=4
-autocmd filetype scala setlocal expandtab | setlocal shiftwidth=2 | setlocal tabstop=2 | setlocal softtabstop=2
-autocmd filetype css setlocal expandtab | setlocal shiftwidth=4 | setlocal tabstop=4 | setlocal softtabstop=4
-autocmd filetype tex setlocal ts=4 | setlocal sw=4 | setlocal softtabstop=4 | setlocal expandtab
-autocmd filetype lua setlocal ts=2 | setlocal sw=2 | setlocal softtabstop=2 | setlocal expandtab
-autocmd filetype sh setlocal ts=4 | setlocal sw=4 | setlocal softtabstop=4 | setlocal expandtab
-autocmd filetype srt setlocal ts=4 | setlocal sw=4 | setlocal softtabstop=4 | setlocal expandtab
-autocmd filetype vim setlocal ts=2 | setlocal sw=2 | setlocal expandtab
-autocmd filetype markdown setlocal ts=2 | setlocal sw=2 | setlocal expandtab
-autocmd filetype ocaml setlocal shiftwidth=2| setlocal ts=2| setlocal sw=2 | setlocal expandtab
-autocmd filetype go setlocal ts=4 | setlocal sw=4 | setlocal noexpandtab
-autocmd filetype go setlocal makeprg=gomake
-
 " CPC
 au BufNewFile,BufRead *.cpc setf c
 au BufNewFile,BufRead *.cpc syn keyword cType cps
@@ -769,6 +742,35 @@ function FT_ocaml()
   syntax on
 endfunction
 
+" cpp, java specific abbreviation
+"autocmd filetype c,cpp,java set shiftwidth=8 | set ts=8 | set noexpandtab
+noremap ( ()<Esc>i)
+autocmd filetype c,cpp,java set shiftwidth=4 | set ts=4 | set expandtab
+autocmd filetype c,cpp abbreviate #i #include
+autocmd filetype c,cpp abbreviate #d #define
+autocmd filetype c,cpp abbreviate #e #endif
+"autocmd filetype c,cpp set list | set listchars=tab:»·,trail:·
+autocmd filetype c,cpp,java,go inoremap{ {<CR>}<Esc>ko
+autocmd filetype ruby setlocal shiftwidth=2 | setlocal ts=2 | setlocal expandtab
+autocmd filetype help setlocal nonu
+autocmd filetype vue setlocal expandtab | setlocal shiftwidth=4 | setlocal tabstop=4 | setlocal softtabstop=4
+autocmd filetype html setlocal expandtab | setlocal shiftwidth=4 | setlocal tabstop=4 | setlocal softtabstop=4
+autocmd filetype vue.html.javascript.css setlocal expandtab | setlocal shiftwidth=4 | setlocal tabstop=4 | setlocal softtabstop=4
+autocmd filetype javascript setlocal expandtab | setlocal shiftwidth=4 | setlocal tabstop=4 | setlocal softtabstop=4
+autocmd filetype css setlocal expandtab | setlocal shiftwidth=4 | setlocal tabstop=4 | setlocal softtabstop=4
+autocmd filetype python setlocal expandtab | setlocal shiftwidth=4 | setlocal tabstop=4 | setlocal softtabstop=4
+autocmd filetype scala setlocal expandtab | setlocal shiftwidth=2 | setlocal tabstop=2 | setlocal softtabstop=2
+autocmd filetype tex setlocal ts=4 | setlocal sw=4 | setlocal softtabstop=4 | setlocal expandtab
+autocmd filetype lua setlocal ts=2 | setlocal sw=2 | setlocal softtabstop=2 | setlocal expandtab
+autocmd filetype sh setlocal ts=4 | setlocal sw=4 | setlocal softtabstop=4 | setlocal expandtab
+autocmd filetype srt setlocal ts=4 | setlocal sw=4 | setlocal softtabstop=4 | setlocal expandtab
+autocmd filetype vim setlocal ts=2 | setlocal sw=2 | setlocal expandtab
+autocmd filetype markdown setlocal ts=2 | setlocal sw=2 | setlocal expandtab
+autocmd filetype ocaml setlocal shiftwidth=2| setlocal ts=2| setlocal sw=2 | setlocal expandtab
+autocmd filetype go setlocal ts=4 | setlocal sw=4 | setlocal noexpandtab
+autocmd filetype go setlocal makeprg=gomake
+
+
 " ---------------
 " jsx
 " ---------------
@@ -803,4 +805,5 @@ fu! NERDCommenter_after()
     g:ft
   endif
 endfu
+
 
