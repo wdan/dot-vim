@@ -7,7 +7,7 @@ set nocompatible
 filetype off     " required!
 
 let g:vundle_default_git_proto='https'
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim/
 set rtp+=~/.vim/vim-golang/
 call vundle#rc()
 
@@ -46,7 +46,7 @@ Bundle 'scrooloose/nerdcommenter'
 " Automatic helpers
 Bundle 'marijnh/tern_for_vim'
 Bundle 'derekwyatt/vim-scala'
-Bundle 'Valloric/YouCompleteMe'
+" Bundle 'Valloric/YouCompleteMe'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'def-lkb/vimbufsync'
 Bundle 'Raimondi/delimitMate'
@@ -138,10 +138,10 @@ set secure
 " ---------------
 set t_Co=256 " XXX This has problem on real terminal, fix it
 "colorscheme inkpot
-colorscheme cobalt
+colorscheme Cobalt
 "set background=dark
 "colorscheme solarized
-colorscheme monokai
+colorscheme Monokai
 "let g:molokai_original = 1
 "let g:rehash256 = 1
 "colorscheme Tomorrow-Night
@@ -806,4 +806,5 @@ fu! NERDCommenter_after()
   endif
 endfu
 
+set clipboard=unnamed
 
