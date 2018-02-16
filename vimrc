@@ -7,7 +7,7 @@ set nocompatible
 filetype off     " required!
 
 let g:vundle_default_git_proto='https'
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim/
 set rtp+=~/.vim/vim-golang/
 call vundle#rc()
 
@@ -198,7 +198,7 @@ set cindent
 set autoindent
 set smartindent " Smart indet
 set smarttab
-set textwidth=80
+set textwidth=100
 " for better formatting for multi-byte characters
 set formatoptions+=tcqMm
 
@@ -806,4 +806,8 @@ fu! NERDCommenter_after()
   endif
 endfu
 
+
+autocmd BufWritePre *.py :%s/\s\+$//e
+
+set clipboard=unnamed
 
